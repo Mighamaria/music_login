@@ -41,14 +41,6 @@ public class UserController {
 
 
 
-
-
-
-
-
-
-
-
     @GetMapping({"/forAdmin"})
     @PreAuthorize("hasRole('Admin')")
     public String forAdmin(){

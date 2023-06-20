@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RatingDto {
 	@Min(value = 1, message = "Rating must be at least 1")
-    @Max(value = 5, message = "Rating must not exceed 5")
+    @Max(value = 10, message = "Rating must not exceed 10")
 	private double rating;
 //	@NotEmpty(message = "Please provide description")
 //	@NotNull

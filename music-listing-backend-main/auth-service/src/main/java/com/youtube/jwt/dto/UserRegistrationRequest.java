@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 @Data
@@ -27,6 +28,7 @@ public class UserRegistrationRequest {
 
     @NotEmpty(message = "Password is required")
     @ValidPassword(message = "Password criteria does not match")
+
     private String userPassword;
 
 }

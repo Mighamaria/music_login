@@ -64,13 +64,13 @@ public class UserController {
 	}
 	
 	
-	@PostMapping("add/rating/music/{musicid}/{userid}")
-	public ResponseEntity<String> addRatingMusic(@Valid @RequestBody RatingDto ratingdto, @PathVariable Long musicid,@PathVariable Long userid) throws InvalidRatingException, MusicNotFoundException {
-		if (ratingdto.getRating() < 1 || ratingdto.getRating() > 5) {
+	@PostMapping("add/rating/music/{musicId}/{userId}")
+	public ResponseEntity<String> addRatingMusic(@Valid @RequestBody RatingDto ratingdto, @PathVariable Long musicId,@PathVariable Long userId) throws InvalidRatingException, MusicNotFoundException {
+		if (ratingdto.getRating() < 1 || ratingdto.getRating() > 10) {
 			//return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid rating. Please provide a rating between 1 and 10");
 			throw new InvalidRatingException("Invalid rating. Please provide a rating between 1 and 10");
 		}
-		boolean ratingAdded = userService.addMusicRating(ratingdto, musicid,userid);
+		boolean ratingAdded = userService.addMusicRating(ratingdto, musicId,userId);
 
 		if (ratingAdded) {
 			return ResponseEntity.status(HttpStatus.CREATED).body("Rating added successfully.");
