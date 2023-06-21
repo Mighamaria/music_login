@@ -26,7 +26,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Autowired
     private JwtUtil jwtUtil;
 
-
     @Autowired
     private JwtService jwtService;
 
@@ -40,8 +39,13 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
             jwtToken = requestTokenHeader.substring(7);
+
+//            System.out.println(jwtToken);
+
             try {
-                username = jwtUtil.getUsernameFromToken(jwtToken); //getting the username from token
+                username = jwtUtil.getUsernameFromToken(jwtToken);
+//                System.out.println(username);//getting the username from token
+
             } catch (IllegalArgumentException e) {
                 System.out.println("Unable to get JWT Token");
             } catch (ExpiredJwtException e) {

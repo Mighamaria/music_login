@@ -13,6 +13,7 @@ import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
 @RestController
+//@RequestMapping("/auth")
 public class UserController {
 
     @Autowired

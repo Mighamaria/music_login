@@ -14,39 +14,35 @@ import java.util.List;
 @RequestMapping("/1.0/admin")
 public class MusicController {
 
-        @Autowired
-        MusicService musicService;
+    @Autowired
+    MusicService musicService;
 
 
-        @PostMapping("/addMusic")
-        public ResponseEntity<Music> addAMusic(@RequestBody MusicDto dto) {
-	//return ResponseEntity.ok(musicrepo.save(dto));
-            return ResponseEntity.ok(musicService.add(dto));
-        }
-
-        @GetMapping("/viewAllMusics")
-        public List<Music> viewAllMusics() {
-            return musicService.view();
-        }
-
-        @GetMapping("/get/{musicId}")
-        public ResponseEntity<Music> getById(@PathVariable long musicId) throws MusicNotFoundException {
-            return ResponseEntity.ok(musicService.fetchById(musicId));
-        }
-
-        @PutMapping("/updateAMusic/{musicId}")
-        public ResponseEntity<Music> updateMusic(@RequestBody MusicDto dto,@PathVariable @Valid long musicId ) throws MusicNotFoundException {
-            return ResponseEntity.ok(musicService.update(dto,musicId));
-        }
-
-        @DeleteMapping("/deleteAMusic/{musicId}")
-        public String deleteMusic(@PathVariable long musicId)  throws MusicNotFoundException {
-
-            return	musicService.delete(musicId);
-
-        }
+    @PostMapping("/addMusic")
+    public ResponseEntity<Music> addAMusic(@RequestBody MusicDto dto) {
+        //return ResponseEntity.ok(musicRepo.save(dto));
+        return ResponseEntity.ok(musicService.add(dto));
     }
 
+    @GetMapping("/viewAllMusics")
+    public List<Music> viewAllMusics() {
+        return musicService.view();
+    }
 
+    @GetMapping("/get/{musicId}")
+    public ResponseEntity<Music> getById(@PathVariable long musicId) throws MusicNotFoundException {
+        return ResponseEntity.ok(musicService.fetchById(musicId));
+    }
 
+    @PutMapping("/updateAMusic/{musicId}")
+    public ResponseEntity<Music> updateMusic(@RequestBody MusicDto dto,@PathVariable @Valid long musicId ) throws MusicNotFoundException {
+        return ResponseEntity.ok(musicService.update(dto,musicId));
+    }
 
+    @DeleteMapping("/deleteAMusic/{musicId}")
+    public String deleteMusic(@PathVariable long musicId)  throws MusicNotFoundException {
+
+        return	musicService.delete(musicId);
+
+    }
+}

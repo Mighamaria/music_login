@@ -65,7 +65,7 @@ public class UserController {
 	
 	
 	@PostMapping("add/rating/music/{musicId}/{userId}")
-	public ResponseEntity<String> addRatingMusic(@Valid @RequestBody RatingDto ratingdto, @PathVariable Long musicId,@PathVariable Long userId) throws InvalidRatingException, MusicNotFoundException {
+	public ResponseEntity<String> addRatingMusic(@Valid @RequestBody RatingDto ratingdto, @PathVariable long musicId,@PathVariable Long userId) throws InvalidRatingException, MusicNotFoundException {
 		if (ratingdto.getRating() < 1 || ratingdto.getRating() > 10) {
 			//return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid rating. Please provide a rating between 1 and 10");
 			throw new InvalidRatingException("Invalid rating. Please provide a rating between 1 and 10");
@@ -78,6 +78,11 @@ public class UserController {
 			throw new MusicNotFoundException("Failed to add rating, Music not found");
 		}
 
+	}
+	@GetMapping("/rating/overall/{musicId}")
+	public ResponseEntity<Double> getMusicOverallRating(@PathVariable long musicId) {
+		double overallRating = userService.getMusicOverallRating(musicId);
+		return ResponseEntity.ok(overallRating);
 	}
 
 }

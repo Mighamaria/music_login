@@ -5,7 +5,9 @@ import com.ust.admin_service.entity.Music;
 import com.ust.admin_service.exception.MusicNotFoundException;
 import com.ust.admin_service.repository.MusicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+//import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,9 +16,11 @@ public class MusicService {
 
 
     @Autowired
-    MusicRepository musicrepo;
+    MusicRepository musicRepo;
+
 
     public Music add(MusicDto dto) {
+
 //		Music music=Music.build(0,dto.getMusicName(),dto.getArtistName(),
 //				dto.getMusicGenre(),dto.getSongReleaseDate(),dto.getSongLanguage(),
 //				dto.getDuration(),dto.getCountry(),dto.getOverallRate());
@@ -29,16 +33,18 @@ public class MusicService {
         music.setDuration(dto.getDuration());
         music.setCountry(dto.getCountry());
         music.setOverallRate(dto.getOverallRate());
-      return musicrepo.save(music);
+      return musicRepo.save(music);
     }
+
+
 
     public List<Music> view() {
         // TODO Auto-generated method stub
-        return musicrepo.findAll();
+        return musicRepo.findAll();
     }
 
     public Music fetchById(long musicId) throws MusicNotFoundException {
-        Optional<Music> op=musicrepo.findById(musicId);
+        Optional<Music> op=musicRepo.findById(musicId);
         if(op.isPresent()) {
             return op.get();
         }
@@ -46,7 +52,7 @@ public class MusicService {
     }
 
     public Music update(MusicDto dto, long musicId) throws MusicNotFoundException {
-        Optional<Music> op = musicrepo.findById(musicId);
+        Optional<Music> op = musicRepo.findById(musicId);
         Music temp = null;
         if (op.isPresent()) {
             temp = op.get();
@@ -58,16 +64,16 @@ public class MusicService {
             temp.setDuration(dto.getDuration());
             temp.setCountry(dto.getCountry());
 //            temp.setOverallRate(dto.getOverallRate());
-            return musicrepo.save(temp);
+            return musicRepo.save(temp);
         }
         else
             throw new MusicNotFoundException("music not found with id : "+ musicId);
     }
 
     public String delete(long musicId) throws MusicNotFoundException {
-        Optional<Music> opt= musicrepo.findById(musicId);
+        Optional<Music> opt= musicRepo.findById(musicId);
         if(opt.isPresent()) {
-            musicrepo.deleteById(musicId);
+            musicRepo.deleteById(musicId);
             return "Music Deleted Successfully";
 
         }

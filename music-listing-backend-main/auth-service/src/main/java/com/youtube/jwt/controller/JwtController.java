@@ -4,14 +4,12 @@ import com.youtube.jwt.entity.JwtRequest;
 import com.youtube.jwt.entity.JwtResponse;
 import com.youtube.jwt.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RestController
+//@RequestMapping("/auth")
 public class JwtController {
 
     @Autowired

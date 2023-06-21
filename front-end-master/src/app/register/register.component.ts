@@ -72,7 +72,7 @@ implements OnInit
       // Make an HTTP POST request to the backend API
       // this.http.post<any>('http://localhost:9090/registerNewUser', this.user, options).subscribe(
         // this.popupService(this.user).subscribe(  
-          this.http.post<any>('http://localhost:9090/authenticate', this.user, options).subscribe(
+          this.http.post<any>('http://localhost:9090/registerNewUser', this.user, options).subscribe(
         // this.popupService(this.user).subscribe(  
       (response) => {
           console.log('Registration successful!', response);

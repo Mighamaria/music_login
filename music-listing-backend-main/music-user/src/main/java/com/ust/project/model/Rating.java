@@ -20,7 +20,8 @@ public class Rating {
 	private long ratingId;
 	private long userId;
 	private long musicId;
+
 	private double rating;
-//	private String message;
+
 
 }
